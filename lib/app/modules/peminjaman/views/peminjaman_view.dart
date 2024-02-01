@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import 'package:peminjam_perpustakaan_kelas_c/app/data/model/response_pinjam.dart';
+
+import '../../../data/model/response_pinjam.dart';
 import '../controllers/peminjaman_controller.dart';
 
 class PeminjamanView extends GetView<PeminjamanController> {
@@ -13,12 +16,17 @@ class PeminjamanView extends GetView<PeminjamanController> {
         title: const Text('PeminjamanView'),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text(
-          'PeminjamanView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+      body: controller.obx((state) => ListView.separated(
+        itemCount: state!.length,
+        itemBuilder: (context, index){
+          DataPeminjaman dataBook = state[index];
+          return ListTile(
+            title: Text("${dataBook.book?.judul}"),
+            subtitle: Text("Peminjam ${dataBook.userId}\nDipinjam tanggal ${dataBook.tanggalPinjam}\nDikembalikan tanggal ${dataBook.tanggalKembali}\nStatus ${dataBook.status} "),
+            );
+        },
+        separatorBuilder: (context, index)=> Divider(),
+      )),
     );
   }
 }

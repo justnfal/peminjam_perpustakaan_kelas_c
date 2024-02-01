@@ -11,11 +11,11 @@ class ResponseRegister {
   ResponseRegister.fromJson(dynamic json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    data = json['data'] != null ? DataPinjam.fromJson(json['data']) : null;
   }
   int? status;
   String? message;
-  Data? data;
+  DataPinjam? data;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -38,8 +38,8 @@ class ResponseRegister {
 /// created_at : "2024-01-09T05:36:44.000000Z"
 /// id : 2
 
-class Data {
-  Data({
+class DataPinjam {
+  DataPinjam({
       this.nama, 
       this.username, 
       this.telp, 
@@ -49,7 +49,7 @@ class Data {
       this.createdAt, 
       this.id,});
 
-  Data.fromJson(dynamic json) {
+  DataPinjam.fromJson(dynamic json) {
     nama = json['nama'];
     username = json['username'];
     telp = json['telp'];

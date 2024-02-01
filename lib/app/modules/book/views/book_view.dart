@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -23,10 +24,15 @@ class BookView extends GetView<BookController> {
           return ListTile(
             title: Text("${dataBook.judul}"),
             subtitle: Text("Penulis ${dataBook.penulis}\n${dataBook.penerbit} - ${dataBook.tahunTerbit}"),
+            trailing: ElevatedButton(onPressed: ()=>Get.toNamed(Routes.ADD_PEMINJAMAN, parameters: {
+              'id' : (dataBook.id ??0).toString(),'judul':dataBook.judul ??'-'
+            }),
+            child: Text("Pinjam"),),
           );
         },
         separatorBuilder: (context, index)=> Divider(),
-      )),
+      ),onLoading: Center(child: CupertinoActivityIndicator())
+      ),
     );
   }
 }
